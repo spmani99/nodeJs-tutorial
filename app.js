@@ -1,11 +1,22 @@
-const http = require("http");
+const express = require("express");
 
-const route = require("./routes");
+const app = express();
 
-const server = http.createServer(route.handler);
-console.log(route.soomeText);
-
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+app.use((req, res, next) => {
+  console.log("Im middlewere");
+  next();
 });
+
+app.use((req, res, next) => {
+  console.log("Im middle middlewere");
+  res.send("<h1>Hii Sandali</h1>");
+});
+
+app.listen(3000);
+
+// const PORT = 3000;
+// const server = http.createServer(app);
+
+// server.listen(PORT, () => {
+//   console.log(`Server running on ${PORT}`);
+// });
